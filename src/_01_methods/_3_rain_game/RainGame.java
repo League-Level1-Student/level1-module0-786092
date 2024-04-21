@@ -1,5 +1,7 @@
 package _01_methods._3_rain_game;
 
+import java.awt.Color;
+
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -46,8 +48,8 @@ public class RainGame extends PApplet {
     static final int HEIGHT = 600;
 
     int score = 0;
-    int bucketWidth = 50;
-    int bucketHeight;
+    int bucketWidth = 75;
+    int bucketHeight = 75;
     PImage bucket;
     int y;
     int x;
@@ -60,12 +62,27 @@ public class RainGame extends PApplet {
 
     @Override
     public void setup() {
-
+    	bucket = loadImage("images/bucket.png");
+    	bucket.resize(bucketWidth,bucketHeight);
+    	x = 200;
+    	y = 50;
     }
 
     @Override
     public void draw() {
-
+    	background(255,255,0);
+    	fill(205,205,255);
+    	ellipse(x,y,25,25);
+    	y+=7;
+    	image(bucket,mouseX,500);
+    	if(y>500) {
+    		checkCatch(x);
+    	 	x = (int)random(width);
+    	 	y = 50;
+    	}
+    	fill(0,0,0);
+    	textSize(16);
+    	text("Score: " + score, 20, 20);
     }
 
     static public void main(String[] args) {

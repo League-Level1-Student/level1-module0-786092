@@ -61,6 +61,10 @@ public class SpinningRecord extends PApplet {
 		image(pictureOfRecord, 0, 0);
 		if(mousePressed) {
 			record+=3;
+			song.play();
+		}
+		else{
+			song.stop();
 		}
 	}
 
