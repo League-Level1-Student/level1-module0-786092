@@ -1,5 +1,6 @@
 package _03_gui_with_help._3_drum_kit;
 
+import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.net.URL;
@@ -16,6 +17,7 @@ import game_tools.Sound;
 public class DrumKit implements MouseListener {
     static boolean canPlaySounds = true; // Set this to false if your computer cannot play sounds
     JLabel drumLabel;
+    JLabel jcymbal;
 
     public void run() {
         //  Make a JFrame variable and initialize it using "new JFrame()"
@@ -39,6 +41,7 @@ public class DrumKit implements MouseListener {
         //  Edit the next line to use your String variable
         // drumLabel = createLabelImage(drumImageString);
     	drumLabel = createLabelImage(drum);
+    	String cymbal = ("cymbal.jpg");
         //  Add the label to the panel
     	panel.add(drumLabel);
         //  Call the pack() method on the frame.
@@ -49,11 +52,14 @@ public class DrumKit implements MouseListener {
         // *** Write the code in the mouseClicked() method below
     	
         //  Set the layout of the panel to "new GridLayout()"
-
+    	panel.setLayout(new GridLayout(1,2));
         //  Add a cymbal image to make a Drum Kit (one has been provided).
+    	jcymbal = createLabelImage(cymbal);
         //  You will need a different sound to go with this image.
+    	panel.add(jcymbal);
         //  Remember to add this MouseListener to it. Run the program.
-
+    	jcymbal.addMouseListener(this);
+    	frame.pack();
     }
 
     @Override
@@ -62,9 +68,15 @@ public class DrumKit implements MouseListener {
         // the console to see when this is printed.
     	System.out.println("mouse clicked");
         //JLabel labelClicked = (JLabel) e.getSource(); // This line gets the label
-                                                        // that the mouse
+                                                      // that the mouse
                                                         // clicked on
-
+    	JLabel labelClicked = (JLabel) e.getSource();
+    	if(drumLabel==labelClicked) {
+    		playSound("drum.wav");
+    	}
+    	if(jcymbal==labelClicked) {
+    		playSound("cymbal.wav");
+    	}
         // You can use the drum sound provided ("drum.wav") or
         // download another drum sound (.wav) and drop it into the Drum Kit package.
         // You can find sounds on freesound.org, and to download from there, you must log in
